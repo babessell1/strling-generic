@@ -1,3 +1,5 @@
-REF_FASTA: "../strling/ref.fa"
+OLD_REF_FASTA: "../strling/ref.fa"
+REF_FASTA: "/scratch/remills_root/remills1/bbessell/refs/hg38.fa"
 BAM_DIR: "../strling/bams/"
 STRLING: "../strling/strling"
+FASTQ_DIR: "/scratch/remills_root/remills1/bbessell/fastq/"
