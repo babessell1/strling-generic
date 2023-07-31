@@ -1,0 +1,3 @@
+REF_FASTA: "../strling/ref.fa"
+BAM_DIR: "../strling/bams/"
+STRLING: "../strling/strling"
