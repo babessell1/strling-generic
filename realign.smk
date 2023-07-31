@@ -32,7 +32,7 @@ rule bam_to_fastq:
     conda: "envs/bed.yaml"
     shell:
         """
-        env > logs/test_env.log
+        env | grep "PATH" > logs/env_output.txt
         bedtools bamtofastq -i {input.bam} -fq {output.fastq} &> {log}
         """
 
