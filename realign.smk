@@ -27,7 +27,7 @@ rule bwa_mem_align:
         """
         mkdir -p realigned_bams
         bwa mem {input.ref} {input.fastq} | samtools sort -o {output.bam} &> {log}
-        """n
+        """
 
 # Define the 'all' rule to run the entire workflow
 rule all:
