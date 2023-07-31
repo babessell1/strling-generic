@@ -1,5 +1,18 @@
 configfile: "config.yaml"
 
+sample_names = [os.path.splitext(bam_file)[0] for bam_file in os.listdir(config["BAM_DIR"])]
+
+def get_sample_names(wildcards):
+    bam_file = config["BAM_DIR"] + wildcards.sample + ".bam"
+    with open(bam_file, "rb") as bam:
+        header_line = bam.readline()
+        header_fields = header_line.strip().split(b"\t")
+        sample_name = None
+        for field in header_fields:
+            if field.startswith(b"SM:"):
+                sample_name = field[3:]
+                break
+    return sample_name.decode()
 
 # Define a rule to convert BAM to FASTQ using bedtools bamtofastq
 rule bam_to_fastq:
@@ -32,5 +45,5 @@ rule bwa_mem_align:
 # Define the 'all' rule to run the entire workflow
 rule all:
     input:
-        expand(config["FASTQ_DIR"] + "{sample}.fq", sample=config["SAMPLES"]),
-        expand("realigned_bams/{sample}_GRCh38.bam", sample=read_bam_files())
+        expand(config["FASTQ_DIR"] + "{sample}.fq", sample=sample_names),
+        expand("realigned_bams/{sample}_GRCh38.bam", sample=sample_names)
