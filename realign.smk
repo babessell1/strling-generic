@@ -28,7 +28,7 @@ rule bam_to_fastq:
     output:
         fastq = config["FASTQ_DIR"] + "{sample}.fq"
     log:
-        "logs/bam_to_fastq_{wildcards.sample}.log"
+        "logs/bam_to_fastq_{sample}.log"
     conda: "envs/bed.yaml"
     shell:
         "bedtools bamtofastq -i {input.bam} -fq {output.fastq} &> {log}"
@@ -41,7 +41,7 @@ rule bwa_mem_align:
     output:
         bam = "realigned_bams/{sample}_GRCh38.bam"
     log:
-        "logs/bwa_mem_align_{wildcards.sample}.log"
+        "logs/bwa_mem_align_{sample}.log"
     conda: "envs/bwa.yaml"
     shell:
         """
