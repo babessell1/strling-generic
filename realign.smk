@@ -31,7 +31,10 @@ rule bam_to_fastq:
         "logs/bam_to_fastq_{sample}.log"
     conda: "envs/bed.yaml"
     shell:
-        "bedtools bamtofastq -i {input.bam} -fq {output.fastq} &> {log}"
+        """
+        env > logs/test_env.log
+        bedtools bamtofastq -i {input.bam} -fq {output.fastq} &> {log}
+        """
 
 # Define a rule to align the FASTQ files to the old reference using bwa mem
 rule bwa_mem_align:
