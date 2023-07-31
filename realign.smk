@@ -1,6 +1,6 @@
 configfile: "config.yaml"
 
-sample_names = [os.path.splitext(bam_file)[0] for bam_file in os.listdir(config["BAM_DIR"])]
+sample_names = [os.path.splitext(bam_file)[0] for bam_file in os.listdir(config["BAM_DIR"]) if bam_file.endswith(".bam")]
 
 
 def get_sample_names(wildcards):
