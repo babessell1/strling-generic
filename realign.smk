@@ -32,5 +32,5 @@ rule bwa_mem_align:
 # Define the 'all' rule to run the entire workflow
 rule all:
     input:
-    expand(config["FASTQ_DIR"] + "{sample}.fq", sample=config["SAMPLES"]),
+        expand(config["FASTQ_DIR"] + "{sample}.fq", sample=config["SAMPLES"]),
         expand("realigned_bams/{sample}_GRCh38.bam", sample=read_bam_files())
