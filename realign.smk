@@ -29,7 +29,7 @@ rule bam_to_fastq:
         fastq = config["FASTQ_DIR"] + "{sample}.fq"
     #log:
     #    "logs/bam_to_fastq_{sample}.log"
-    conda: "envs/bed.yaml"
+    #conda: "envs/bed.yaml"
     shell:
         """
         /home/bbessell/strling-generic/.snakemake/conda/40a8c538/bin/bamToFastq -i {input.bam} -fq {output.fastq} # &> {log}
@@ -44,7 +44,7 @@ rule bwa_mem_align:
         bam = "realigned_bams/{sample}_GRCh38.bam"
     #log:
         #"logs/bwa_mem_align_{sample}.log"
-    conda: "envs/bwa.yaml"
+    #conda: "envs/bwa.yaml"
     shell:
         """
         mkdir -p realigned_bams
