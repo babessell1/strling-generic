@@ -33,7 +33,7 @@ rule bam_to_fastq:
     shell:
         """
         env | grep "PATH" > logs/env_output.txt
-        bedtools bamtofastq -i {input.bam} -fq {output.fastq} &> {log}
+        /home/bbessell/strling-generic/.snakemake/conda/40a8c538/bin/bamToFastq -i {input.bam} -fq {output.fastq} &> {log}
         """
 
 # Define a rule to align the FASTQ files to the old reference using bwa mem
@@ -49,5 +49,5 @@ rule bwa_mem_align:
     shell:
         """
         mkdir -p realigned_bams
-        bwa mem {input.ref} {input.fastq} | samtools sort -o {output.bam} &> {log}
+        /home/bbessell/strling-generic/.snakemake/conda/a7a07afb/bin/bwa mem {input.ref} {input.fastq} | samtools sort -o {output.bam} &> {log}
         """
