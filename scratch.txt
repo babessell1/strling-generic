@@ -1,0 +1,3 @@
+salloc --account=remills1 --job-name=realign --partition=standard --nodes=1 --cpus-per-task=1 --ntasks-per-node=12 --mem-per-cpu=4G --time=24:00:00
+snakemake -s realign.smk --use-conda --rerun-incomplete --cores 12
+
