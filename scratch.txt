@@ -1,3 +1,5 @@
 salloc --account=remills1 --job-name=realign --partition=standard --nodes=1 --cpus-per-task=1 --ntasks-per-node=12 --mem-per-cpu=4G --time=24:00:00
 snakemake -s realign.smk --use-conda --rerun-incomplete --cores 12
 
+/home/bbessell/strling-generic/.snakemake/conda/a7a07afb/bin/bwa index -a bwtsw /scratch/remills_root/remills1/bbessell/refs/hg38.fa
+

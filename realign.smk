@@ -27,12 +27,11 @@ rule bam_to_fastq:
         bam = config["BAM_DIR"] + "{sample}.bam"
     output:
         fastq = config["FASTQ_DIR"] + "{sample}.fq"
-    #log:
-    #    "logs/bam_to_fastq_{sample}.log"
+    log: "logs/bam_to_fastq_{sample}.log"
     #conda: "envs/bed.yaml"
     shell:
         """
-        /home/bbessell/strling-generic/.snakemake/conda/40a8c538/bin/bamToFastq -i {input.bam} -fq {output.fastq} # &> {log}
+        /home/bbessell/strling-generic/.snakemake/conda/40a8c538/bin/bamToFastq -i {input.bam} -fq {output.fastq} &> {log}
         """
 
 # Define a rule to align the FASTQ files to the old reference using bwa mem
@@ -42,11 +41,11 @@ rule bwa_mem_align:
         ref = config["REF_FASTA"]
     output:
         bam = "realigned_bams/{sample}_GRCh38.bam"
-    #log:
-        #"logs/bwa_mem_align_{sample}.log"
+    log: "logs/bwa_mem_align_{sample}.log"
     #conda: "envs/bwa.yaml"
     shell:
         """
         mkdir -p realigned_bams
-        /home/bbessell/strling-generic/.snakemake/conda/a7a07afb/bin/bwa mem {input.ref} {input.fastq} | samtools sort -o {output.bam} # &> {log}
+        #/home/bbessell/strling-generic/.snakemake/conda/a7a07afb/bin/bwa index {input.ref}
+        /home/bbessell/strling-generic/.snakemake/conda/a7a07afb/bin/bwa mem {input.ref} {input.fastq} | samtools sort -o {output.bam} &> {log}
         """
