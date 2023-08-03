@@ -6,7 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
 #SBATCH --ntasks-per-node=12
-#SBATCH --mem-per-cpu=4G
+#SBATCH --mem-per-cpu=8G
 #SBATCH --time=48:00:00
 #SBATCH --output=logs/realign.out
 #SBATCH --error=logs/realign.err
