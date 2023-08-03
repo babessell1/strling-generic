@@ -7,7 +7,9 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --ntasks-per-node=12
 #SBATCH --mem-per-cpu=4G
-#SBATCH --time=24:00:00
+#SBATCH --time=48:00:00
+#SBATCH --output=logs/realign.out
+#SBATCH --error=logs/realign.err
 
 eval "$(conda shell.bash hook)"
 conda init bash
